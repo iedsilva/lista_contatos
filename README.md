@@ -1,2 +1,2 @@
-# lista_contatos
+# Lista de contatos
 Nodejs REST API

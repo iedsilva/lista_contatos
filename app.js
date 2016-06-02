@@ -4,8 +4,6 @@
 var express  = require('express');
 // cria nossa aplicação Express
 var app      = express();
-// mongoose for mongodb
-var mongoose = require('mongoose');
 // solicitações para log no console (express4)
 var logger = require('morgan');
 // puxar informações por POST HTML (express4)
@@ -14,9 +12,21 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 
+// mongoose for mongodb
+var mongoose = require('mongoose');
 // MONGODB ============================================
 // conectando ao mongodb no localhost, criando o banco de dados contato
-mongoose.connect('mongodb://localhost/contato');
+var dbConfig = require('./db.js');
+mongoose.connect(dbConfig.url);
+var conn = mongoose.connection;             
+
+conn.on('error', console.error.bind(console, 'connection error:'));  
+
+conn.once('open', function() {
+});
+
+// mongoose.connect('mongodb://localhost/contato');
+
 // Requisição ao arquivo que cria nosso model Contato
 require('./models/Contato');
 
