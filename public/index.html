@@ -22,13 +22,6 @@
         form .form-group:first-child { padding-left: 0; }
     </style>
     
-    <!-- JS -->
-    <!-- Carregando a biblioteca jQuery -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <!-- Carregando a biblioteca AngularJS -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-    <script src="angularApp.js"></script>
-    
 </head>
 <!-- DEFINE O CONTROLLER E BUSCA TODOS OS CONTATOS -->
 <body ng-controller="mainController">
@@ -78,17 +71,27 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="telefoneContato">Telefone</label>
-                    <input type="text" class="form-control" id="telefoneContato" placeholder="(00) 0000-0000" ng-model="formContato.telefone">
+                    <input type="text" mask="(99) 9999-9999?9" class="form-control" id="telefoneContato" placeholder="(00) 0000-0000" ng-model="formContato.telefone">
                 </div>
                 <div class="form-group col-md-3">
                     <!-- createToDo() WILL CREATE NEW TODOS -->
-                    <button type="submit" class="btn btn-primary" ng-click="criarContato()">Criar</button>
-                    <button type="submit" class="btn btn-info" ng-click="atualizarContato()">Atualizar</button>
+                    <button type="submit" ng-if="!editing" class="btn btn-primary" ng-click="criarContato()">Criar</button>
+                    <button type="submit" ng-if="editing" class="btn btn-info" ng-click="atualizarContato()">Atualizar</button>
                 </div>
             </form>
         </div>
         
     </div>
+
+    <!-- JS -->
+    <!-- Carregando a biblioteca jQuery -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Carregando o jquery Masked Input -->
+    <script src="bower_components/jquery.maskedinput/dist/jquery.maskedinput.min.js"></script>
+    <!-- Carregando a biblioteca AngularJS -->
+    <script src="bower_components/angular/angular.min.js"></script>
+
+    <script src="angularApp.js"></script>
     
 </body>
 </html>
